@@ -1,0 +1,93 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+select, input, button {
+  margin: 10px 0;
+  padding: 5px;
+  width: 100%;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.time-frame-signals {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.time-frame-signal {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.live-rsi {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
+.live-rsi-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.live-rsi {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

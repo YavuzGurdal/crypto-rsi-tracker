@@ -1,0 +1,118 @@
+.live-rsi {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.alarm-settings {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.timeframe-alarm {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.timeframe-alarm label {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.timeframe-alarm input {
+  margin-left: 10px;
+  width: 60px;
+}
+
+.rsi-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.rsi-table-container {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.rsi-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.rsi-table th, .rsi-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.rsi-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  border-bottom: 2px solid #aaa;  /* Başlıkların altındaki çizgiyi kalınlaştırdık */
+}
+
+.rsi-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.rsi-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Güncellenen stil */
+.rsi-table tr.coin-separator {
+  border-top: 1.5px solid #bbb;  /* Çizgiyi incelttik ve rengini biraz daha açık yaptık */
+}
+
+.signal-display {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.signal-display h3 {
+  margin-top: 0;
+}
+
+.signal-display ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.signal-display li {
+  margin-bottom: 10px;
+}
+
+.signal-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.signal-table th, .signal-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.signal-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.signal-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.signal-table tr:hover {
+  background-color: #f5f5f5;
+}
