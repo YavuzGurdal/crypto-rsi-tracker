@@ -9,7 +9,7 @@ function App() {
         <h2>Kripto Para RSI Göstergesi</h2>
       </header>
       <main className="App-main">
-        <LiveRSI symbol="BTCUSDT" timeFrames={['5m', '15m', '4h']} />
+        <LiveRSI symbol="BTCUSDT" timeFrames={['1m', '5m', '15m', '4h']} />
       </main>
     </div>
   );

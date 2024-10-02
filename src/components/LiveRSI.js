@@ -141,9 +141,10 @@ const SignalDisplay = ({ signals }) => {
   );
 };
 
-const LiveRSI = ({ timeFrames }) => {
+const LiveRSI = ({ timeFrames = ['1m', '5m', '15m', '4h'] }) => {
   const [rsiData, setRsiData] = useState({});
   const [signals, setSignals] = useState([]);
+  const [rsi1mData, setRsi1mData] = useState({});
   const mainCoins = ['BTCUSDT', 'ETHUSDT'];
   const additionalCoins = [
     'BNBUSDT', 'ADAUSDT', 'DOGEUSDT', 'XRPUSDT', 'DOTUSDT',
@@ -176,13 +177,20 @@ const LiveRSI = ({ timeFrames }) => {
         checkForSignals(symbol, lastRSI, timeFrame);
 
         if (mainCoins.includes(symbol)) {
-          setRsiData(prevData => ({
-            ...prevData,
-            [timeFrame]: {
-              ...prevData[timeFrame],
+          if (timeFrame === '1m') {
+            setRsi1mData(prevData => ({
+              ...prevData,
               [symbol]: lastTwoRSI
-            }
-          }));
+            }));
+          } else {
+            setRsiData(prevData => ({
+              ...prevData,
+              [timeFrame]: {
+                ...prevData[timeFrame],
+                [symbol]: lastTwoRSI
+              }
+            }));
+          }
         }
       } catch (error) {
         console.error(`Veri çekme hatası (${symbol} ${timeFrame}):`, error);
@@ -234,13 +242,61 @@ const LiveRSI = ({ timeFrames }) => {
   return (
     <div className="live-rsi">
       <SignalDisplay signals={signals} />
+      <RSI1mTable rsiData={rsi1mData} />
       {timeFrames.map(timeFrame => (
-        <RSITable 
-          key={timeFrame}
-          timeFrame={timeFrame}
-          rsiData={rsiData[timeFrame] || {}}
-        />
+        timeFrame !== '1m' && (
+          <RSITable 
+            key={timeFrame}
+            timeFrame={timeFrame}
+            rsiData={rsiData[timeFrame] || {}}
+          />
+        )
       ))}
+    </div>
+  );
+};
+
+const RSI1mTable = ({ rsiData }) => {
+  const formatTime = (date) => {
+    return date.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+
+  const formatRSI = (rsi) => {
+    return typeof rsi === 'number' ? rsi.toFixed(2) : rsi;
+  };
+
+  const coinOrder = ['BTCUSDT', 'ETHUSDT']; // Coin sıralamasını burada belirleyin
+
+  return (
+    <div className="rsi-table-container">
+      <h3>1m RSI Değerleri</h3>
+      <table className="rsi-table">
+        <thead>
+          <tr>
+            <th>COIN NAME</th>
+            <th>MA</th>
+            <th>MK</th>
+            <th>RSI 1 (7)</th>
+            <th>RSI 2 (14)</th>
+            <th>RSI 3 (21)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {coinOrder.flatMap((coinName) => {
+            const values = rsiData[coinName] || [];
+            return values.map(({ openTime, closeTime, rsi1, rsi2, rsi3 }, index) => (
+              <tr key={`${coinName}-${index}`}>
+                <td>{coinName.replace('USDT', '')}</td>
+                <td>{formatTime(new Date(openTime))}</td>
+                <td>{formatTime(new Date(closeTime))}</td>
+                <td>{formatRSI(rsi1)}</td>
+                <td>{formatRSI(rsi2)}</td>
+                <td>{formatRSI(rsi3)}</td>
+              </tr>
+            ));
+          })}
+        </tbody>
+      </table>
     </div>
   );
 };

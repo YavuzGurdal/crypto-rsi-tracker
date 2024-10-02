@@ -1,6 +1,7 @@
 import { fetchKlines } from './binanceService';
 
 const timeFrames = {
+  '1m': 1 * 60 * 1000,  // 1 dakika eklendi
   '5m': 5 * 60 * 1000,
   '15m': 15 * 60 * 1000,
   '4h': 4 * 60 * 60 * 1000
